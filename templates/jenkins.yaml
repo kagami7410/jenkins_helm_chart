@@ -1,0 +1,274 @@
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - basicSSHUserPrivateKey:
+              id: "github_key"
+              privateKeySource:
+                directEntry:
+                  privateKey: "{AQAAABAAAAGwPBTGtTjLYMTaBmwowkTmWyCRbaDmlvaqQI7GYej+ymXTHZQhEXkxYa4V9tcvTMzu4ei3j8c940LauXOREVusFdIi8U3ysGgRqlbavVCOgtHrl5UMz37YQlMv4Qk/b0Jv9lmiqTX0o4P4kIMYB877gjxWSOnPEFvtsnnhntfxCG2S4XbJEOc87k0OXla4F1mSEv1giAFzqECZ4eZ0FZfUeiHghckz6JoPrByK3L++oqCEX4PhUl3a0ptAwQFEr+zE0kf3p+3AzmiyYiHUZGP/deiMRtRuKvOfSVTZLcEGtqbm+ZcWjFF32jG/DjAQr5JwqWSz5YkedsAD/Iu/aarKJ5votm01AGr5eQtHdyYkktupN5LWPrHzZ3PrM0/Dx8jpDnWdMtUjbpinmWhNSJt5eO46FWXj6C0m3MigTl9aNRWNEqT8WrJrtOgxLa+QfDAnm+sAjD7HEGuFqGPrw2U2UGf4Ue0PAYwlyx5OENlKI6TBdAZCbmPIRcFzZQcmQZ5d2ixSPwwDrypvjl8lrBW6KOaR2jm3HewhAIBOpFro8X9C2fIuL2pggvScUEVi4fA8vP+16zqTFHv9OG/xDZiEXQ==}"
+              scope: GLOBAL
+              username: "github_key"
+          - usernamePassword:
+              description: "docker credentials"
+              id: "670bb4dd-eda3-460a-a4ed-dec383722ee6"
+              password: "{AQAAABAAAAAQ2S2rX4i++zHM7fGOLb12HImYVzusW59HQDb+IkrxF2c=}"
+              scope: GLOBAL
+              username: "sujan7410"
+              usernameSecret: true
+jenkins:
+  systemMessage: "Welcome to Sujan's Jenkins instance!"
+  agentProtocols:
+    - "JNLP4-connect"
+    - "Ping"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  clouds:
+    - kubernetes:
+        containerCap: 10
+        containerCapStr: "10"
+        jenkinsUrl: "http://jenkins-service.devops-tools.svc.cluster.local:8080/"
+        name: "kubernetes"
+        namespace: "devops-tools"
+        templates:
+          - id: "291b397e-66d8-4679-8556-861c8943b4f9"
+            label: "kube-agent"
+            name: "kube-agent"
+            namespace: "devops-tools"
+            nodeUsageMode: "NORMAL"
+            yaml: |-
+              kind: Pod
+              spec:
+                  containers:
+                  - name: agent-container
+                    image: sujan7410/kubernetes-agent:v1.0.0
+                    command: [ "cat"]
+                    tty: true
+                    volumeMounts:
+                    - name: docker-sock-volume
+                      mountPath: /var/run/docker.sock
+                      readOnly: false
+                  volumes:
+                  - name: docker-sock-volume
+                    hostPath:
+                      path: "/var/run/docker.sock"
+            yamlMergeStrategy: "override"
+            yamls:
+              - |-
+                kind: Pod
+                spec:
+                    containers:
+                    - name: agent-container
+                      image: sujan7410/kubernetes-agent:v1.0.0
+                      command: [ "cat"]
+                      tty: true
+                      volumeMounts:
+                      - name: docker-sock-volume
+                        mountPath: /var/run/docker.sock
+                        readOnly: false
+                    volumes:
+                    - name: docker-sock-volume
+                      hostPath:
+                        path: "/var/run/docker.sock"
+        webSocket: true
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  disabledAdministrativeMonitors:
+    - "hudson.diagnosis.ReverseProxySetupMonitor"
+  labelAtoms:
+    - name: "built-in"
+    - name: "kube-agent"
+    - name: "non"
+    - name: "test-job_32-nc4d3"
+  labelString: "non"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 0
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+        - id: "ab_baby"
+          name: "ab"
+          properties:
+            - "apiToken"
+            - "myView"
+            - preferredProvider:
+                providerId: "default"
+            - "timezone"
+            - "experimentalFlags"
+            - mailer:
+                emailAddress: "abajayi654@gmail.com"
+            - "favorite"
+        - id: "admin"
+          name: "admin"
+          properties:
+            - "myView"
+            - preferredProvider:
+                providerId: "default"
+            - "timezone"
+            - "experimentalFlags"
+            - mailer:
+                emailAddress: "sujangurung10@gmail.com"
+            - "apiToken"
+            - "favorite"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+      - id: "default"
+        url: "https://updates.jenkins.io/update-center.json"
+  views:
+    - all:
+        name: "all"
+  viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: true
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  sSHD:
+    port: -1
+unclassified:
+  bitbucketEndpointConfiguration:
+    endpoints:
+      - bitbucketCloudEndpoint:
+          enableCache: false
+          manageHooks: false
+          repositoriesCacheDuration: 0
+          teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+      - "jobBuildDiscarder"
+  buildStepOperation:
+    enabled: false
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  enrichedSummaryConfig:
+    enrichedSummaryEnabled: false
+    httpClientDelayBetweenRetriesInSeconds: 1
+    httpClientMaxRetries: 3
+    httpClientTimeoutInSeconds: 1
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://192.168.0.78:32000/github-webhook/"
+  globalLibraries:
+    libraries:
+      - defaultVersion: "master"
+        name: "jenkins_library"
+        retriever:
+          modernSCM:
+            libraryPath: "."
+            scm:
+              git:
+                id: "bf80ffe0-4e0b-4502-9cab-7f459b396f95"
+                remote: "https://github.com/kagami7410/jenkins_library.git"
+                traits:
+                  - "gitBranchDiscovery"
+  globalTimeOutConfiguration:
+    operations:
+      - "abortOperation"
+    overwriteable: false
+  injectionConfig:
+    allowUntrusted: false
+    checkForBuildAgentErrors: false
+    enabled: false
+    enforceUrl: false
+    injectCcudExtension: false
+    injectMavenExtension: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://192.168.0.78:32000/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  pollSCM:
+    pollingThreadCount: 10
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+tool:
+  git:
+    installations:
+      - home: "git"
+        name: "Default"
+  jdk:
+    installations:
+      - name: "java"
+        properties:
+          - installSource:
+              installers:
+                - openJDKInstaller:
+                    openjdkPackage: openJDK17
+  maven:
+    installations:
+      - name: "maven"
+        properties:
+          - installSource:
+              installers:
+                - maven:
+                    id: "3.8.6"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
+  pipelineMaven:
+    globalTraceability: false
+    triggerDownstreamUponResultAborted: false
+    triggerDownstreamUponResultFailure: false
+    triggerDownstreamUponResultNotBuilt: false
+    triggerDownstreamUponResultSuccess: true
+    triggerDownstreamUponResultUnstable: false
