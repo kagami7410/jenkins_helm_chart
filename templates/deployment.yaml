@@ -55,9 +55,9 @@ spec:
               mountPath: /var/tmp/config
 
       volumes:
-#        - name: jenkins-config
-#          configMap:
-#            name: JCASC-configMap
+        - name: jenkins-config
+          configMap:
+            name: JCASC-configMap
         - name: jenkins-home
           persistentVolumeClaim:
             claimName: {{ .Values.controller.name}}-pv-claim
