@@ -1,20 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: jenkins-service
-  namespace: devops-tools
+  name: {{ .Values.controller.name}}-service
+  namespace: {{ .Values.controller.namespace}}
   annotations:
     prometheus.io/scrape: 'true'
     prometheus.io/path:   /
     prometheus.io/port:   '8080'
 spec:
   selector:
-    app: jenkins-server
+    app: {{ .Values.controller.name}}
   type: NodePort
   ports:
-    - port: 8080
-      targetPort: 8080
-      nodePort: 32000
+    - port: {{ .Values.controller.agentListenerPort}}
+      targetPort:  {{ .Values.controller.agentListenerPort}}
+      nodePort:  {{ .Values.controller.nodePort}}
 
 
 

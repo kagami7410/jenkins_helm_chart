@@ -7,14 +7,14 @@ volumeBindingMode: WaitForFirstConsumer
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: jenkins-pv-volume
+  name:  {{ .Values.controller.name}}-pv-volume
   labels:
     type: local
 spec:
   storageClassName: local-storage
   claimRef:
-    name: jenkins-pv-claim
-    namespace: devops-tools
+    name: {{ .Values.controller.name}}-pv-claim
+    namespace: {{ .Values.controller.namespace}}
   capacity:
     storage: 10Gi
   accessModes:
@@ -28,13 +28,13 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - k8sworker1-virtual-machine
+                - {{ .Values.nodes.node1}}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jenkins-pv-claim
-  namespace: devops-tools
+  name: {{ .Values.controller.name}}-pv-claim
+  namespace: {{ .Values.controller.namespace}}
 spec:
   storageClassName: local-storage
   accessModes:

@@ -1,37 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.app.name}}
-  namespace: {{ .Values.app.namespace}}
+  name: {{ .Values.controller.image}}:{{ .Values.controller.tag}}
+  namespace: {{ .Values.controller.namespace}}
 spec:
-  replicas: {{ .Values.app.replicas}}
+  replicas: {{ .Values.controller.replicas}}
   selector:
     matchLabels:
-      app: {{ .Values.app.name}}
+      app: {{ .Values.controller.name}}
   template:
     metadata:
       labels:
-        app: {{ .Values.app.name}}
+        app: {{ .Values.controller.name}}
     spec:
       securityContext:
         fsGroup: 1000
         runAsUser: 1000
       serviceAccountName: jenkins-admin
       containers:
-        - name: {{ .Values.app.name}}
-          image: {{ .Values.app.name}}
+        - name: {{ .Values.controller.name}}
+          image: {{ .Values.controller.name}}
           resources:
             limits:
-              memory: {{ .Values.app.resources.limits.memory}}
-              cpu: {{ .Values.app.resources.limits.cpu}}
+              memory: {{ .Values.controller.resources.limits.memory}}
+              cpu: {{ .Values.controller.resources.limits.cpu}}
             requests:
-              memory: {{ .Values.app.resources.requests.memory}}
-              cpu: {{ .Values.app.resources.requests.cpu}}
+              memory: {{ .Values.controller.resources.requests.memory}}
+              cpu: {{ .Values.controller.resources.requests.cpu}}
           ports:
             - name: httpport
-              containerPort: 8080
+              containerPort: {{ .Values.controller.ports.httpPort | default "8080"}}
             - name: jnlpport
-              containerPort: 50000
+              containerPort: {{ .Values.controller.ports.jnlpPort | default "5000"}}
           livenessProbe:
             httpGet:
               path: "/login"
@@ -49,12 +49,12 @@ spec:
             timeoutSeconds: 5
             failureThreshold: 3
           volumeMounts:
-            - name: jenkins-data
+            - name: jenkins-home
               mountPath: /var/jenkins_home
       volumes:
-        - name: jenkins-data
+        - name: jenkins-home
           persistentVolumeClaim:
-            claimName: jenkins-pv-claim
+            claimName: {{ .Values.controller.name}}-pv-claim
 
 
 

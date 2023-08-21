@@ -1,10 +1,12 @@
-app:
+controller:
   name: jenkins
-  image:
-    name: jenkins/jenkins
-    tag: lts
+  image: jenkins/jenkins
+  tag: lts
   namespace: devops-tools
   replicas: 1
+  ports:
+    httpPort: 8080
+    jnlpPort: 5000
 
   resources:
     limits:
@@ -14,7 +16,25 @@ app:
       memory: "500Mi"
       cpu: "500m"
 
-  service:
-    port: 8080
-    targetPort: 8080
-    nodePort: 32000
+  agentListenerPort: 8080
+  nodePort: 32000
+
+
+autoscaling:
+  enabled: false
+
+ingress:
+  enabled: false
+
+nodes:
+  node1: k8sworker1-virtual-machine
+  node2: k8sworker2-virtual-machine
+
+createServiceAccount:
+  enabled: true
+
+createClusterRoleBinding:
+  enabled: true
+
+createClusterRole:
+  enabled: true
