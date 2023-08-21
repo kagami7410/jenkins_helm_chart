@@ -2,7 +2,6 @@ apiVerison: v1
 kind: ConfigMap
 metadata:
   name: JCASC-configMap
-  namespace: {{ .Values.controller.namespace}}
 data:
   jenkins-config.yaml: lol
 #    credentials:
