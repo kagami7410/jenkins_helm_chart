@@ -57,7 +57,7 @@ spec:
       volumes:
         - name: jenkins-config
           configMap:
-            name: JCASC-configMap
+            name: jcasc-configmap
         - name: jenkins-home
           persistentVolumeClaim:
             claimName: {{ .Values.controller.name}}-pv-claim

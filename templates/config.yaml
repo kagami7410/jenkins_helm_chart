@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: JCASC-configMap
+  name: jcasc-configmap
 data:
   jenkins-configyaml: |
     credentials:
