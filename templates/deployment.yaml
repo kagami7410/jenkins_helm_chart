@@ -7,26 +7,26 @@ spec:
   replicas: {{ .Values.app.replicas}}
   selector:
     matchLabels:
-      app: jenkins-server
+      app: {{ .Values.app.name}}
   template:
     metadata:
       labels:
-        app: jenkins-server
+        app: {{ .Values.app.name}}
     spec:
       securityContext:
         fsGroup: 1000
         runAsUser: 1000
       serviceAccountName: jenkins-admin
       containers:
-        - name: jenkins
-          image: jenkins/jenkins:lts
+        - name: {{ .Values.app.name}}
+          image: {{ .Values.app.name}}
           resources:
             limits:
-              memory: "2Gi"
-              cpu: "1000m"
+              memory: {{ .Values.app.resources.limits.memory}}
+              cpu: {{ .Values.app.resources.limits.cpu}}
             requests:
-              memory: "500Mi"
-              cpu: "500m"
+              memory: {{ .Values.app.resources.requests.memory}}
+              cpu: {{ .Values.app.resources.requests.cpu}}
           ports:
             - name: httpport
               containerPort: 8080

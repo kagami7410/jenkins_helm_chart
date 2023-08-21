@@ -6,6 +6,14 @@ app:
   namespace: devops-tools
   replicas: 1
 
+  resources:
+    limits:
+      memory: "2Gi"
+      cpu: "1000m"
+    requests:
+      memory: "500Mi"
+      cpu: "500m"
+
   service:
     port: 8080
     targetPort: 8080
