@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.controller.image}}:{{ .Values.controller.tag}}
+  name: {{ .Values.controller.image}}
   namespace: {{ .Values.controller.namespace}}
 spec:
   replicas: {{ .Values.controller.replicas}}
@@ -19,7 +19,7 @@ spec:
       serviceAccountName: jenkins-admin
       containers:
         - name: {{ .Values.controller.name}}
-          image: {{ .Values.controller.name}}
+          image: {{ .Values.controller.image}}:{{ .Values.controller.tag}}
           resources:
             limits:
               memory: {{ .Values.controller.resources.limits.memory}}
