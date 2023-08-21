@@ -1,12 +1,12 @@
-#apiVersion: v1
-#kind: PersistentVolumeClaim
-#metadata:
-#  name: {{ .Values.controller.name}}-pv-claim
-#  namespace: {{ .Values.controller.namespace}}
-#spec:
-#  storageClassName: local-storage
-#  accessModes:
-#    - ReadWriteOnce
-#  resources:
-#    requests:
-#      storage: 3Gi
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.controller.name}}-pv-claim
+  namespace: {{ .Values.controller.namespace}}
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
