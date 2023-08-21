@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.controller.name}}-configMap
   namespace: {{ .Values.controller.namespace}}
-  
+data:
+  SONAR_QUBE_URL = sonarQube.sujangcloud.uk
