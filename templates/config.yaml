@@ -24,6 +24,12 @@ data:
                   username: "sujan7410"
                   usernameSecret: true
     jenkins:
+      environmentVariables:
+        - key: lol
+          valueFrom:
+            configMapKeyRef:
+              name: my-configmap
+              key: lol
       systemMessage: "Welcome to Sujan's Jenkins instance!"
       agentProtocols:
         - "JNLP4-connect"
