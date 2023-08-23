@@ -30,7 +30,7 @@ data:
             configMapKeyRef:
               name: my-configmap
               key: lol
-      systemMessage: "Welcome to Sujan's Jenkins instance!"
+      systemMessage: "Testing env vars from configmap!"
       agentProtocols:
         - "JNLP4-connect"
         - "Ping"
