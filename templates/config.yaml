@@ -23,10 +23,6 @@ data:
                   scope: GLOBAL
                   username: "sujan7410"
                   usernameSecret: true
-    unclassified:
-      environmentVariables:
-        env-vars-configmap:
-          configMapName: "jcasc-configmap"
       
     jenkins:
       systemMessage: "Testing env vars from configmap!"
@@ -163,6 +159,9 @@ data:
       sSHD:
         port: -1
     unclassified:
+      environmentVariables:
+        env-vars-configmap:
+          configMapName: "jcasc-configmap"
       bitbucketEndpointConfiguration:
         endpoints:
           - bitbucketCloudEndpoint:
