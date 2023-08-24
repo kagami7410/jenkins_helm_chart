@@ -23,14 +23,13 @@ data:
                   scope: GLOBAL
                   username: "sujan7410"
                   usernameSecret: true
+    unclassified:
+      environmentVariables:
+        env-vars-configmap:
+          configMapName: "jcasc-configmap"
+      
     jenkins:
       systemMessage: "Testing env vars from configmap!"
-      globalNodeProperties:
-        - envVars:
-            env:
-              envFrom:
-                configMapKeyRef:
-                  name: jcasc-configmap
       agentProtocols:
         - "JNLP4-connect"
         - "Ping"
