@@ -27,9 +27,7 @@ data:
       systemMessage: "Testing env vars from configmap!"
       globalNodeProperties:
         - envVars:
-            env:
-              - name: CASC_JENKINS_CONFIG
-                valueFrom:
+              envFrom:
                   configMapKeyRef:
                     name: jcasc-configmap
       agentProtocols:
