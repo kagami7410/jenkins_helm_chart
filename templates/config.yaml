@@ -25,6 +25,13 @@ data:
                   usernameSecret: true
     jenkins:
       systemMessage: "Testing env vars from configmap!"
+      globalNodeProperties:
+        - envVars:
+            env:
+              - name: CASC_JENKINS_CONFIG
+                valueFrom:
+                  configMapKeyRef:
+                    name: jcasc-configmap
       agentProtocols:
         - "JNLP4-connect"
         - "Ping"
