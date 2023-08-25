@@ -160,8 +160,7 @@ data:
         port: -1
     unclassified:
       environmentVariables:
-        env-vars-configmap:
-          configMapName: "jcasc-configmap"
+        file: /vars/tmp/config/env_vars
       bitbucketEndpointConfiguration:
         endpoints:
           - bitbucketCloudEndpoint:
