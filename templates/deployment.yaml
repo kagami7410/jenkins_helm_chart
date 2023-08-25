@@ -54,7 +54,7 @@ spec:
             - name: jenkins-config
               mountPath: /var/tmp/config
             - name: jenkins-env-vars
-              mountPath: /vars/tmp/config/env_vars
+              mountPath: /var/tmp/config/env_vars
 
       volumes:
         - name: jenkins-config

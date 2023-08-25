@@ -159,8 +159,9 @@ data:
       sSHD:
         port: -1
     unclassified:
-      environmentVariables:
-        file: /vars/tmp/config/env_vars
+      gloalNodeProperties:
+      - envVars:
+          file: /var/tmp/config/env_vars
       bitbucketEndpointConfiguration:
         endpoints:
           - bitbucketCloudEndpoint:
