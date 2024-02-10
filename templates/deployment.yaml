@@ -53,16 +53,16 @@ spec:
               mountPath: /var/jenkins_home
             - name: jenkins-config
               mountPath: /var/tmp/config
-            - name: jenkins-env-vars
-              mountPath: /var/tmp/config/env_vars
+#            - name: jenkins-env-vars
+#              mountPath: /var/tmp/config/env_vars
 
       volumes:
         - name: jenkins-config
           configMap:
             name: jcasc-configmap
-        - name: jenkins-env-vars
-          configMap:
-            name: jenkins-env-vars
+#        - name: jenkins-env-vars
+#          configMap:
+#            name: jenkins-env-vars
         - name: jenkins-home
           persistentVolumeClaim:
             claimName: {{ .Values.controller.name}}-pv-claim
