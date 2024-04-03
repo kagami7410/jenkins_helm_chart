@@ -10,8 +10,6 @@ metadata:
 spec:
   selector:
     app: {{ .Values.controller.name}}
-  type: NodePort
   ports:
     - port: {{ .Values.controller.agentListenerPort}}
       targetPort:  {{ .Values.controller.agentListenerPort}}
-      nodePort:  {{ .Values.controller.nodePort}}

@@ -17,7 +17,6 @@ controller:
       cpu: "500m"
 
   agentListenerPort: 8080
-  nodePort: 32000
 
 
 autoscaling:

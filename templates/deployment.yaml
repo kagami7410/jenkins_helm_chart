@@ -60,9 +60,7 @@ spec:
         - name: jenkins-config
           configMap:
             name: jcasc-configmap
-#        - name: jenkins-env-vars
-#          configMap:
-#            name: jenkins-env-vars
+            
         - name: jenkins-home
           persistentVolumeClaim:
             claimName: {{ .Values.controller.name}}-pv-claim
