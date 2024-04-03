@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.controller.namespace}}
 spec:
   hosts:
-  - "jenkins.sujangcloud.com"
+  - "sujangcloud.com"
   gateways:
   - istio-system/istio-ingress-gateway
   http:
@@ -15,7 +15,7 @@ spec:
 
     route:
     - destination:
-        host: {{ .Values.controller.name}}-service.devops-tools.svc.cluster.local
+        host: jenkins-service.devops-tools.svc.cluster.local
         port:
           number:  {{ .Values.controller.agentListenerPort}}
 
