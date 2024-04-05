@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.controller.namespace}}
 spec:
   hosts:
-  - "sujangcloud.uk"
+  - "jenkins.sujangcloud.uk"
   gateways:
   - istio-system/istio-ingress-gateway
   http:
