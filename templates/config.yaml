@@ -50,13 +50,17 @@ data:
                   spec:
                       containers:
                       - name: agent-container
-                        image: sujan7410/kubernetes-agent:v1.0.0
+                        image: sujan7410/kubernetes-agent:v1.0.2
                         command: [ "cat"]
                         tty: true
                         volumeMounts:
                         - name: docker-sock-volume
                           mountPath: /var/run/docker.sock
                           readOnly: false
+                      - name: node18-container
+                        image: node:18
+                        command: [ "cat"]
+                        tty: true                          
                       volumes:
                       - name: docker-sock-volume
                         hostPath:

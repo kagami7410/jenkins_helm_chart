@@ -15,7 +15,7 @@
 #              password: "{AQAAABAAAAAQ2S2rX4i++zHM7fGOLb12HImYVzusW59HQDb+IkrxF2c=}"
 #              scope: GLOBAL
 #              username: "sujan7410"
-#              usernameSecret: true
+            #  usernameSecret: true
 #jenkins:
 #  systemMessage: "Welcome to Sujan's Jenkins instance!"
 #  agentProtocols:
