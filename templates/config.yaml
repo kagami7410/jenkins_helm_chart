@@ -53,6 +53,11 @@ data:
                         image: sujan7410/kubernetes-agent:v1.0.2
                         command: [ "cat"]
                         tty: true
+                        resources:
+                          requests:
+                            ephemeral-storage: 2Gi
+                          limits:
+                            ephemeral-storage: 4Gi
                         volumeMounts:
                         - name: docker-sock-volume
                           mountPath: /var/run/docker.sock
@@ -60,7 +65,12 @@ data:
                       - name: node18-container
                         image: node:18
                         command: [ "cat"]
-                        tty: true                          
+                        tty: true  
+                        resources:
+                          requests:
+                            ephemeral-storage: 2Gi
+                          limits:
+                            ephemeral-storage: 4Gi
                       volumes:
                       - name: docker-sock-volume
                         hostPath:
