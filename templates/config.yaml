@@ -57,6 +57,10 @@ data:
                         - name: docker-sock-volume
                           mountPath: /var/run/docker.sock
                           readOnly: false
+                      - name: node18-container
+                        image: node:18
+                        command: [ "cat"]
+                        tty: true                          
                       volumes:
                       - name: docker-sock-volume
                         hostPath:
@@ -75,6 +79,10 @@ data:
                           - name: docker-sock-volume
                             mountPath: /var/run/docker.sock
                             readOnly: false
+                        - name: node18-container
+                          image: node:18
+                          command: [ "cat"]
+                          tty: true                            
                         volumes:
                         - name: docker-sock-volume
                           hostPath:
