@@ -51,6 +51,7 @@ data:
                       containers:
                       - name: agent-container
                         image: sujan7410/kubernetes-agent:v1.0.2
+                        imagePullPolicy: Always 
                         command: [ "cat"]
                         tty: true
                         resources:
