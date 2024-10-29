@@ -63,6 +63,10 @@ data:
                         - name: docker-sock-volume
                           mountPath: /var/run/docker.sock
                           readOnly: false
+                      - name: zap
+                        image: securecodebox/zap
+                        command: [ "cat"]
+                        tty: true   
                       - name: node18-container
                         image: node:18
                         command: [ "cat"]
@@ -92,10 +96,14 @@ data:
                               ephemeral-storage: 2Gi
                             limits:
                               ephemeral-storage: 4Gi
-                          volumeMounts:
+                          volumeMounts:                          
                           - name: docker-sock-volume
                             mountPath: /var/run/docker.sock
                             readOnly: false
+                        - name: zap
+                          image: securecodebox/zap
+                          command: [ "cat"]
+                          tty: true   
                         - name: node18-container
                           image: node:18
                           command: [ "cat"]
