@@ -67,6 +67,10 @@ data:
                         image: ghcr.io/zaproxy/zaproxy:stable
                         command: [ "cat"]
                         tty: true   
+                        volumeMounts:
+                        - name: extra-volume
+                          mountPath: "/zap/wrk"
+                          readOnly: false
                       - name: node18-container
                         image: node:18
                         command: [ "cat"]
@@ -80,6 +84,9 @@ data:
                       - name: docker-sock-volume
                         hostPath:
                           path: "/var/run/docker.sock"
+                      - name: extra-volume
+                        hostPath:
+                          path: "/zap/wrk"
                 yamlMergeStrategy: "override"
                 yamls:
                   - |-
