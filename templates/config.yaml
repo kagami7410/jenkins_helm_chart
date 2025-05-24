@@ -111,6 +111,8 @@ data:
                           image: ghcr.io/zaproxy/zaproxy:stable
                           command: [ "cat"]
                           tty: true   
+                          securityContext:
+                            runAsUser: 0
                           volumeMounts:
                           - name: extra-volume
                             mountPath: "/zap/wrk"
