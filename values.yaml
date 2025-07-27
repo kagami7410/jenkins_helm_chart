@@ -1,6 +1,6 @@
 controller:
   name: jenkins
-  image: jenkins
+  image: jenkins/jenkins
   tag: 2.400-alpine-jdk17
   namespace: devops-tools
   replicas: 1
