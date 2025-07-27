@@ -1,7 +1,7 @@
 controller:
   name: jenkins
   image: jenkins/jenkins
-  tag: 2.400-alpine-jdk17
+  tag: 2.479.1-lts-jdk17
   namespace: devops-tools
   replicas: 1
   ports:
