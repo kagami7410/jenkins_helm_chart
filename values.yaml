@@ -1,7 +1,7 @@
 controller:
   name: jenkins
   image: jenkins/jenkins
-  tag: jenkins:2.60.3
+  tag: lts
   namespace: devops-tools
   replicas: 1
   ports:
